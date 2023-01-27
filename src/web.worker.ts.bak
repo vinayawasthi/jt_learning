@@ -1,0 +1,15 @@
+let w:Worker=new ("workers.ts");
+function startWorker() {
+  if (typeof(w) == "undefined") {
+    w = new Worker("workers.js");
+  }
+  console.log(w);
+  w.onmessage = function(event) {
+      console.log(event.data);
+  };
+}
+
+function stopWorker() {
+  w.terminate();
+  w = undefined;
+}
